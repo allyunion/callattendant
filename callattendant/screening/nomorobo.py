@@ -34,7 +34,12 @@ class NomoroboService(object):
         number = '{}-{}-{}'.format(number[0:3], number[3:6], number[6:])
         url = "https://www.nomorobo.com/lookup/%s" % number
         # print(url)
-        headers = {}
+        headers = {
+            'User-agent': (
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) '
+                'Gecko/20100101 Firefox/94.0'
+            )
+        }
         allowed_codes = [404]  # allow not found response
         content = self.http_get(url, headers, allowed_codes)
         soup = BeautifulSoup(content, "lxml")  # lxml HTML parser: fast
